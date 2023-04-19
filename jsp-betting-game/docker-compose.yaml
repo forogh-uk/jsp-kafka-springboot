@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+
+  jsp-betting-game:
+    image: forogh/mmv-jsp-betting-game:0.0.2-SNAPSHOT
+    ports:
+      - "8005:8005"
+    depends_on:
+      - dockermysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://dockermysql:3306/betting
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+
+
+  dockermysql:
+    container_name: mysqldb
+    image: mysql
+    ports:
+      - 3307:3306
+    environment:
+       MYSQL_DATABASE: betting
+       MYSQL_ROOT_PASSWORD: root
+      
+  
